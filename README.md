@@ -18,13 +18,12 @@ A full-stack e-commerce web application built with Node.js, Express, and MySQL. 
 ## Screenshots 📸
 
 ![Homepage](homepage.png)
-![Login / Signup](sign.png)
 ![Product Page](product.png)
 ![Cart Page](cart.png)
 ![Orders Page](orders.png)
+![Razorpay Checkout](razorpay.png)
 ![Receipt](receipt.png)
 ![Admin Dashboard](admin.png)
-![Razorpay Checkout](razorpay.png)
 
 ## Tech Stack 🔧
 
