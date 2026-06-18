@@ -161,4 +161,4 @@ A full-stack e-commerce web application built with Node.js, Express, and MySQL. 
 
 ---
 
-Made with ❤️ by Akshat Dubey
+Made by Akshat Dubey
