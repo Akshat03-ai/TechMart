@@ -17,13 +17,33 @@ A full-stack e-commerce web application built with Node.js, Express, and MySQL. 
 
 ## Screenshots 📸
 
-![Homepage](homepage.png)
-![Product Page](product.png)
-![Cart Page](cart.png)
-![Orders Page](orders.png)
-![Razorpay Checkout](razorpay.png)
-![Receipt](receipt.png)
-![Admin Dashboard](admin.png)
+**Homepage**
+
+![Homepage](public/images/homepage.png)
+
+**Product Page**
+
+![Product Page](public/images/product.png)
+
+**Shopping Cart**
+
+![Cart Page](public/images/cart.png)
+
+**Orders Page**
+
+![Orders Page](public/images/orders.png)
+
+**Razorpay Checkout**
+
+![Razorpay Checkout](public/images/razorpay.png)
+
+**Receipt / Invoice**
+
+![Receipt](public/images/receipt.png)
+
+**Admin Dashboard**
+
+![Admin Dashboard](public/images/admin.png)
 
 ## Tech Stack 🔧
 
@@ -112,60 +132,6 @@ A full-stack e-commerce web application built with Node.js, Express, and MySQL. 
    
    The server will run on `http://localhost:3000`
 
-## Project Structure 📁
-
-```
-TechMart/
-├── public/                 # Frontend files
-│   ├── index.html         # Home page
-│   ├── auth.html          # Login/Signup
-│   ├── cart.html          # Shopping cart
-│   ├── change-password.html # Password change
-│   ├── admin.html         # Admin dashboard
-│   ├── css/               # Stylesheets
-│   └── js/                # Client-side scripts
-├── routes/                 # API routes
-│   ├── users.js           # User endpoints
-│   ├── products.js        # Product endpoints
-│   ├── orders.js          # Order endpoints
-│   ├── payment.js         # Payment endpoints
-│   ├── coupons.js         # Coupon endpoints
-│   └── invoice.js         # Invoice endpoints
-├── config/                 # Configuration
-│   └── razorpay.js        # Razorpay setup
-├── db.js                  # Database connection
-├── server.js              # Express app entry point
-├── package.json           # Dependencies
-└── README.md              # This file
-```
-
-## API Endpoints 🔌
-
-### Users
-- `POST /users/signup` — Register new user
-- `POST /users/login` — User login
-- `PUT /users/update/:id` — Update user profile
-- `POST /users/change-password` — Change password without old password verification
-
-### Products
-- `GET /products` — Get all products
-- `GET /products/:id` — Get product details
-- `POST /products` — Create product (admin)
-- `PUT /products/:id` — Update product (admin)
-
-### Orders
-- `GET /orders` — Get user orders
-- `POST /orders` — Create order
-- `GET /orders/:id` — Get order details
-
-### Payment
-- `POST /payment/create` — Create Razorpay order
-- `POST /payment/verify` — Verify payment
-
-### Admin
-- `GET /users/admin/list` — List all users
-- `PUT /users/admin/block/:id` — Block user
-- `PUT /users/admin/unblock/:id` — Unblock user
 
 ## Usage 💡
 
