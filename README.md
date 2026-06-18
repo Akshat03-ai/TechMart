@@ -25,7 +25,7 @@ A full-stack e-commerce web application built with Node.js, Express, and MySQL. 
 
 ![Product Page](public/images/product.png)
 
-**Shopping Cart**
+**Cart Page**
 
 ![Cart Page](public/images/cart.png)
 
@@ -33,11 +33,11 @@ A full-stack e-commerce web application built with Node.js, Express, and MySQL. 
 
 ![Orders Page](public/images/orders.png)
 
-**Razorpay Checkout**
+**Razorpay Checkout Page**
 
 ![Razorpay Checkout](public/images/razorpay.png)
 
-**Receipt / Invoice**
+**Receipt / Order Confirmation**
 
 ![Receipt](public/images/receipt.png)
 
