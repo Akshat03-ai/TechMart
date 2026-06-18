@@ -15,6 +15,17 @@ A full-stack e-commerce web application built with Node.js, Express, and MySQL. 
 - **Invoice Generation** — Generate and download order invoices
 - **Password Reset** — Change/forgot password functionality without old password
 
+## Screenshots 📸
+
+![Homepage](homepage.png)
+![Login / Signup](sign.png)
+![Product Page](product.png)
+![Cart Page](cart.png)
+![Orders Page](orders.png)
+![Receipt](receipt.png)
+![Admin Dashboard](admin.png)
+![Razorpay Checkout](razorpay.png)
+
 ## Tech Stack 🔧
 
 - **Backend:** Node.js, Express.js
