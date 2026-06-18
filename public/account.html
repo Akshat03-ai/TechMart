@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Account — TechMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/7cc14be5cd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="header">
+        <a href="index.html" class="logo">TechMart™</a>
+
+        <div class="search-area">
+            <input id="searchInput" type="search" placeholder="Search products..." />
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+
+            <div id="accountMenuContainer" class="account-menu">
+                <span id="accountText">Account</span>
+                <div id="accountDropdown" class="dropdown"></div>
+            </div>
+
+            <a href="cart.html" class="nav-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cart (<span id="cartCount">0</span>)
+            </a>
+        </nav>
+    </header>
+
+    <div class="admin-container" style="max-width: 900px; margin:auto;">
+
+        <h2 style="margin-bottom: 15px;"><i class="fa-solid fa-user"></i>My Account</h2>
+
+        <!-- USER DETAILS -->
+        <div id="userDetails" class="product-card" style="padding:20px; margin-bottom:20px;">
+            Loading profile...
+        </div>
+
+        <!-- ORDERS SECTION -->
+        <h2 style="margin-top:25px;"><i class="fa-solid fa-box"></i>My Orders</h2>
+        <div id="ordersList" style="margin-top:15px;"></div>
+
+    </div>
+
+    <!-- GLOBAL NAVBAR LOGIC -->
+    <script src="js/main.js"></script>
+
+    <!-- USER ACCOUNT + ORDERS LOGIC -->
+    <script src="js/account-orders.js"></script>
+
+    <!--Footer-->
+    <div class="footer">
+        <div class="heading">
+            <h2>TechMart<sup>™</sup></h2>
+        </div>
+        <div class="content">
+            <div class="social-media">
+                <h4>Social</h4>
+                <p>
+                    <a href="https://www.linkedin.com/in/akshat-dubey-794b6b35a/"><i class="fab fa-linkedin"></i>
+                        Linkedin</a>
+                </p>
+                <p>
+                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                </p>
+                <p>
+                    <a href="https://github.com/Akshat03-ai"><i class="fa-brands fa-github"></i> Github</a>
+                </p>
+                <p>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                </p>
+                <p>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                </p>
+            </div>
+            <div class="links">
+                <h4>Quick links</h4>
+                <p><a href="http://localhost:3000/index.html">Home</a></p>
+                <p><a href="#">About</a></p>
+                <p><a href="mailto:akshat00312@gmail.com">Contact</a></p>
+            </div>
+            <div class="details">
+                <h4 class="address">Address</h4>
+                <p>
+                    BMY Charoda, Chhattisgarh, India, 490025
+                </p>
+                <h4 class="mobile">Mobile</h4>
+                <p><a href="#">+91 8839598761</a></p>
+                <h4 class="mail">Email</h4>
+                <p><a href="#">akshat00312@gmail.com</a></p>
+            </div>
+        </div>
+        <footer>
+            <hr />
+            © 2025 TechMart.
+        </footer>
+</body>
+
+</html>

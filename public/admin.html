@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/7cc14be5cd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="header">
+    <a href="index.html" class="logo">TechMart<sup>™</sup> Admin Panel</a>
+
+    <div class="search-area">
+      <input id="searchInput" type="search" placeholder="Search for laptops, SSDs, RAM..." />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <div id="accountMenuContainer" class="account-menu">
+        <span id="accountText">Account</span>
+        <div id="accountDropdown" class="dropdown">
+        </div>
+      </div>
+      <a href="admin-users.html" class="nav-link admin-only">Users</a>
+      <a href="cart.html" class="nav-link"><i class="fa-solid fa-cart-arrow-down"></i> Cart (<span
+          id="cartCount">0</span>)</a>
+    </nav>
+  </header>
+
+  <div class="admin-container">
+    <!-- Product Form -->
+    <div class="product-form-container">
+      <h3>Add/Update Product</h3>
+      <form id="productForm" class="product-form">
+        <input type="hidden" id="productId">
+        <input type="text" placeholder="Name" id="name" required>
+        <input type="text" placeholder="Category" id="category">
+        <input type="text" placeholder="Description" id="description">
+        <input type="number" placeholder="Price" id="price" step="0.01">
+        <input type="number" placeholder="Stock" id="stock">
+        <input type="text" id="image1" placeholder="Main Image URL" required>
+        <input type="text" id="image2" placeholder="Optional Image URL">
+        <input type="text" id="image3" placeholder="Optional Image URL">
+        <button type="submit">Save Product</button>
+      </form>
+    </div>
+
+    <!-- Products Grid -->
+    <h3>All Products</h3>
+    <div id="allProducts" class="products-grid"></div>
+  </div>
+
+  <!--Footer-->
+  <div class="footer">
+    <div class="heading">
+      <h2>TechMart<sup>™</sup></h2>
+    </div>
+    <div class="content">
+      <div class="social-media">
+        <h4>Social</h4>
+        <p>
+          <a href="https://www.linkedin.com/in/akshat-dubey-794b6b35a/"><i class="fab fa-linkedin"></i> Linkedin</a>
+        </p>
+        <p>
+          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        </p>
+        <p>
+          <a href="https://github.com/Akshat03-ai"><i class="fa-brands fa-github"></i> Github</a>
+        </p>
+        <p>
+          <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+        </p>
+        <p>
+          <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        </p>
+      </div>
+      <div class="links">
+        <h4>Quick links</h4>
+        <p><a href="http://localhost:3000/index.html">Home</a></p>
+        <p><a href="#">About</a></p>
+        <p><a href="mailto:akshat00312@gmail.com">Contact</a></p>
+      </div>
+      <div class="details">
+        <h4 class="address">Address</h4>
+        <p>
+          BMY Charoda, Chhattisgarh, India, 490025
+        </p>
+        <h4 class="mobile">Mobile</h4>
+        <p><a href="#">+91 8839598761</a></p>
+        <h4 class="mail">Email</h4>
+        <p><a href="#">akshat00312@gmail.com</a></p>
+      </div>
+    </div>
+    <footer>
+      <hr />
+      © 2025 TechMart.
+    </footer>
+    <script>
+      function setupSearchOnly() {
+        const input = document.getElementById("searchInput");
+        const btn = document.getElementById("searchBtn");
+
+        if (!input || !btn) return;
+
+        function goSearch() {
+          const q = input.value.trim();
+          if (!q) return;
+
+          // Redirect to homepage search
+          window.location.href = `index.html?search=${encodeURIComponent(q)}`;
+        }
+
+        btn.addEventListener("click", goSearch);
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") goSearch();
+        });
+      }
+
+      setupSearchOnly();
+    </script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

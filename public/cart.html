@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Cart — TechMart</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/7cc14be5cd.js" crossorigin="anonymous"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="header">
+    <a href="index.html" class="logo">TechMart<sup>™</sup></a>
+
+    <div class="search-area">
+      <input id="searchInput" type="search" placeholder="Search for laptops, SSDs, RAM..." />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <div id="accountMenuContainer" class="account-menu">
+        <span id="accountText">Account</span>
+        <div id="accountDropdown" class="dropdown">
+        </div>
+      </div>
+      <a href="cart.html" class="nav-link"><i class="fa-solid fa-cart-arrow-down"></i>Cart (<span
+          id="cartCount">0</span>)</a>
+    </nav>
+  </header>
+
+  <main class="cart-wrap">
+    <h2 style="text-align:center; margin-top:18px;">Your Cart</h2>
+
+    <div class="cart-grid">
+      <!-- left: items -->
+      <section class="cart-items" id="cartItems">
+        <!-- JS will fill -->
+      </section>
+
+      <!-- right: summary -->
+      <aside class="cart-summary">
+        <div class="summary-card">
+          <h3>Order Summary</h3>
+
+          <div class="summary-row">
+            <span>Subtotal</span><span id="subtotal">₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Discount</span><span id="discount">-₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Tax (GST 18%)</span><span id="tax">₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivery</span><span id="delivery">₹0</span>
+          </div>
+
+          <hr>
+
+          <div class="summary-row total">
+            <strong>Grand Total</strong><strong id="grandTotal">₹0</strong>
+          </div>
+
+          <div class="coupon-dropdown">
+            <button class="coupon-toggle">
+              Available Coupons <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div id="availableCoupons" class="coupon-menu"></div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <input id="couponInput" type="text" placeholder="Coupon code"
+              style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;">
+            <button id="applyCoupon" class="page-btn" style="width:100%; margin-top:8px;">Apply Coupon</button>
+            <p id="couponMsg" style="margin-top:8px; color:#666; font-size:0.9rem;"></p>
+          </div>
+
+          <button id="checkoutBtn" class="page-btn"
+            style="width:100%; margin-top:12px; background:#28a745; color:white;">Proceed to Checkout</button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- simulated payment overlay -->
+    <div id="paymentModal" class="payment-modal" style="display:none;">
+      <div class="payment-card">
+        <h3>Simulated Payment</h3>
+        <p id="paymentInfo">Processing...</p>
+        <div id="paymentActions" style="margin-top:16px;">
+          <button id="confirmPay" class="page-btn" style="background:#28a745; color:white;">Confirm Payment</button>
+          <button id="cancelPay" class="page-btn" style="margin-left:8px;">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!--Footer-->
+  <div class="footer">
+    <div class="heading">
+      <h2>TechMart<sup>™</sup></h2>
+    </div>
+    <div class="content">
+      <div class="social-media">
+        <h4>Social</h4>
+        <p>
+          <a href="https://www.linkedin.com/in/akshat-dubey-794b6b35a/"><i class="fab fa-linkedin"></i> Linkedin</a>
+        </p>
+        <p>
+          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        </p>
+        <p>
+          <a href="https://github.com/Akshat03-ai"><i class="fa-brands fa-github"></i> Github</a>
+        </p>
+        <p>
+          <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+        </p>
+        <p>
+          <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        </p>
+      </div>
+      <div class="links">
+        <h4>Quick links</h4>
+        <p><a href="http://localhost:3000/index.html">Home</a></p>
+        <p><a href="#">About</a></p>
+        <p><a href="mailto:akshat00312@gmail.com">Contact</a></p>
+      </div>
+      <div class="details">
+        <h4 class="address">Address</h4>
+        <p>
+          BMY Charoda, Chhattisgarh, India, 490025
+        </p>
+        <h4 class="mobile">Mobile</h4>
+        <p><a href="#">+91 8839598761</a></p>
+        <h4 class="mail">Email</h4>
+        <p><a href="#">akshat00312@gmail.com</a></p>
+      </div>
+    </div>
+    <footer>
+      <hr />
+      © 2025 TechMart.
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>

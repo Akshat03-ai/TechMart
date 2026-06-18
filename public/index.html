@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>TechMart</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/7cc14be5cd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="header">
+    <a href="index.html" class="logo">TechMart<sup>™</sup></a>
+
+    <div class="search-area">
+      <input id="searchInput" type="search" placeholder="Search for laptops, SSDs, RAM..." />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <div id="accountMenuContainer" class="account-menu">
+        <span id="accountText">Account</span>
+        <div id="accountDropdown" class="dropdown">
+        </div>
+      </div>
+      <a href="cart.html" class="nav-link"><i class="fa-solid fa-cart-arrow-down"></i>Cart (<span
+          id="cartCount">0</span>)</a>
+    </nav>
+  </header>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      // go to auth page and open login tab by default
+      window.location.href = 'auth.html?tab=login';
+    } else {
+      const welcomeMsg = document.getElementById('welcomeMsg');
+      welcomeMsg.textContent = `Welcome, ${user.name}!`;
+    }
+  </script>
+
+  <!-- FILTER + SORT BAR -->
+  <section class="controls">
+    <div class="left-controls">
+      <select id="categoryFilter">
+        <option value="">All categories</option>
+        <!-- categories will be appended dynamically -->
+      </select>
+    </div>
+
+    <div class="right-controls">
+      <label for="sortSelect">Sort:</label>
+      <select id="sortSelect">
+        <option value="">Relevance</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="price_desc">Price: High to Low</option>
+        <option value="newest">Newest</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <main>
+    <h2 class="page-title">Available Products</h2>
+    <div id="products"></div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+  </main>
+
+  <!--Footer-->
+  <div class="footer">
+    <div class="heading">
+      <h2>TechMart<sup>™</sup></h2>
+    </div>
+    <div class="content">
+      <div class="social-media">
+        <h4>Social</h4>
+        <p>
+          <a href="https://www.linkedin.com/in/akshat-dubey-794b6b35a/"><i class="fab fa-linkedin"></i> Linkedin</a>
+        </p>
+        <p>
+          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        </p>
+        <p>
+          <a href="https://github.com/Akshat03-ai"><i class="fa-brands fa-github"></i> Github</a>
+        </p>
+        <p>
+          <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+        </p>
+        <p>
+          <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        </p>
+      </div>
+      <div class="links">
+        <h4>Quick links</h4>
+        <p><a href="http://localhost:3000/index.html">Home</a></p>
+        <p><a href="#">About</a></p>
+        <p><a href="mailto:akshat00312@gmail.com">Contact</a></p>
+      </div>
+      <div class="details">
+        <h4 class="address">Address</h4>
+        <p>
+          BMY Charoda, Chhattisgarh, India, 490025
+        </p>
+        <h4 class="mobile">Mobile</h4>
+        <p><a href="#">+91 8839598761</a></p>
+        <h4 class="mail">Email</h4>
+        <p><a href="#">akshat00312@gmail.com</a></p>
+      </div>
+    </div>
+    <footer>
+      <hr />
+      © 2025 TechMart.
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

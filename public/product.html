@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Product — TechMart</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/7cc14be5cd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="header">
+    <a href="index.html" class="logo">TechMart<sup>™</sup></a>
+
+    <div class="search-area">
+      <input id="searchInput" type="search" placeholder="Search for laptops, SSDs, RAM..." />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <div id="accountMenuContainer" class="account-menu">
+        <span id="accountText">Account</span>
+        <div id="accountDropdown" class="dropdown">
+        </div>
+      </div>
+      <a href="cart.html" class="nav-link"><i class="fa-solid fa-cart-arrow-down"></i>Cart (<span
+          id="cartCount">0</span>)</a>
+    </nav>
+  </header>
+
+  <main class="product-detail-wrap">
+    <a href="javascript:history.back()" class="back-floating">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
+    <div id="productDetail" class="product-detail"></div>
+  </main>
+
+  <!--Footer-->
+  <div class="footer">
+    <div class="heading">
+      <h2>TechMart<sup>™</sup></h2>
+    </div>
+    <div class="content">
+      <div class="social-media">
+        <h4>Social</h4>
+        <p><a href="https://www.linkedin.com/in/akshat-dubey-794b6b35a/"><i class="fab fa-linkedin"></i> Linkedin</a>
+        </p>
+        <p><a href="#"><i class="fab fa-twitter"></i> Twitter</a></p>
+        <p>
+          <a href="https://github.com/Akshat03-ai"><i class="fa-brands fa-github"></i> Github</a>
+        </p>
+        <p>
+          <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+        </p>
+        <p>
+          <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        </p>
+      </div>
+      <div class="links">
+        <h4>Quick links</h4>
+        <p><a href="http://localhost:3000/index.html">Home</a></p>
+        <p><a href="#">About</a></p>
+        <p><a href="mailto:akshat00312@gmail.com">Contact</a></p>
+      </div>
+      <div class="details">
+        <h4 class="address">Address</h4>
+        <p>BMY Charoda, Chhattisgarh, India, 490025</p>
+        <h4 class="mobile">Mobile</h4>
+        <p><a href="#">+91 8839598761</a></p>
+        <h4 class="mail">Email</h4>
+        <p><a href="#">akshat00312@gmail.com</a></p>
+      </div>
+    </div>
+    <footer>
+      <hr />
+      © 2025 TechMart.
+    </footer>
+    <script src="js/main.js"></script>
+  </div>
+
+  <script>
+    // helper cart functions (same as homepage)
+    function getCart() { return JSON.parse(localStorage.getItem('cart') || '[]'); }
+    function saveCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); document.getElementById('cartCount').textContent = cart.reduce((s, i) => s + i.qty, 0); }
+
+    // init cart count
+    document.getElementById('cartCount').textContent = getCart().reduce((s, i) => s + i.qty, 0);
+
+    // read id
+    const params = new URLSearchParams(location.search);
+    const pid = params.get('id');
+    const detailDiv = document.getElementById('productDetail');
+
+    if (!pid) {
+      detailDiv.innerHTML = '<p style="text-align:center; padding:30px;">Invalid product. <a href="index.html">Go back</a></p>';
+    } else {
+      (async function () {
+        try {
+          const res = await fetch(`${apiUrl}/products/${encodeURIComponent(pid)}`);
+          if (!res.ok) {
+            detailDiv.innerHTML = '<p style="text-align:center; padding:30px;">Product not found. <a href="index.html">Back</a></p>';
+            return;
+          }
+          const p = await res.json();
+
+          // Split comma-separated images from DB
+          const images = p.image ? p.image.split(',').filter(Boolean) : [];
+          const mainImg = images[0] || '';
+
+          detailDiv.innerHTML = `
+          <div class="pd-grid">
+            <div class="pd-thumbs">
+              ${images.map(src => `<img class="pd-thumb" src="${src}" alt="${p.name}">`).join('')}
+            </div>
+
+            <div class="pd-main">
+              <img id="pd-main-img" src="${mainImg}" alt="${p.name}" class="pd-main-img">
+              <h1 class="pd-title">${p.name}</h1>
+              <p class="pd-category">${p.category || ''}</p>
+              <p class="pd-price">₹${Number(p.price).toLocaleString('en-IN')}</p>
+              <p class="pd-stock">${(p.stock ?? 0) > 0 ? 'In stock: ' + p.stock : 'Out of stock'}</p>
+              <p class="pd-desc">${p.description || ''}</p>
+
+              <div class="pd-actions">
+                <label class="qty-label">Qty:
+                  <input id="pd-qty" type="number" min="1" value="1" />
+                </label>
+
+                <button id="pd-add-cart" class="add-cart-btn">Add to Cart</button>
+                <button id="pd-buy-now" class="add-cart-btn" style="background:#28a745; margin-left:8px;">Buy Now</button>
+              </div>
+
+              <div id="pd-msg" style="margin-top:10px;"></div>
+            </div>
+          </div>
+        `;
+
+          // set qty max if stock exists
+          const qtyInput = document.getElementById('pd-qty');
+          if (p.stock !== null && p.stock !== undefined) {
+            qtyInput.max = p.stock;
+            if (p.stock === 0) {
+              qtyInput.value = 0;
+              qtyInput.disabled = true;
+              document.getElementById('pd-add-cart').disabled = true;
+              document.getElementById('pd-buy-now').disabled = true;
+            }
+          }
+
+          // thumbnail click handler with fade animation
+          const mainImgEl = document.getElementById('pd-main-img');
+          document.querySelectorAll('.pd-thumb').forEach(img => {
+            img.addEventListener('click', () => {
+              if (mainImgEl.src === img.src) return;
+              mainImgEl.classList.add('fade');
+              setTimeout(() => {
+                mainImgEl.src = img.src;
+                mainImgEl.classList.remove('fade');
+              }, 400); // matches CSS transition duration
+            });
+          });
+
+          // add to cart
+          document.getElementById('pd-add-cart').addEventListener('click', () => {
+            const qty = Math.max(1, parseInt(qtyInput.value || 1));
+            if (p.stock !== null && p.stock !== undefined && qty > p.stock) {
+              const msg = document.getElementById('pd-msg');
+              msg.innerText = 'Requested quantity exceeds stock.';
+              msg.style.color = 'red';
+              return;
+            }
+            const cart = getCart();
+            const existing = cart.find(x => x.id === p.id);
+            if (existing) existing.qty += qty;
+            else cart.push({ id: p.id, qty });
+            saveCart(cart);
+            const msg = document.getElementById('pd-msg');
+            msg.innerText = 'Added to cart ✓';
+            msg.style.color = 'green';
+          });
+
+          // buy now (add and go to cart)
+          document.getElementById('pd-buy-now').addEventListener('click', () => {
+
+            const user = JSON.parse(localStorage.getItem("user") || "null");
+
+            if (!user) {
+              alert("Please login first.");
+              return window.location.href = "auth.html?tab=login";
+            }
+
+            if (!user.address || user.address === "Enter Address" ||
+              !user.pincode || user.pincode === "Enter Pincode") {
+              alert("Please add your Address and Pincode before placing an order.");
+              return window.location.href = "account.html"; // redirect to My Account
+            }
+
+            // proceed with buy now
+            const qty = Math.max(1, parseInt(qtyInput.value || 1));
+            const cart = getCart();
+            const existing = cart.find(x => x.id === p.id);
+            if (existing) existing.qty += qty;
+            else cart.push({ id: p.id, qty });
+            saveCart(cart);
+            window.location.href = "cart.html";
+          });
+
+        } catch (err) {
+          console.error(err);
+          detailDiv.innerHTML = '<p style="text-align:center; padding:30px;">Error loading product. <a href="index.html">Back</a></p>';
+        }
+      })();
+    }
+  </script>
+  <script>
+    function setupAccountMenu() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      const container = document.getElementById("accountMenuContainer");
+      const textEl = document.getElementById("accountText");
+      const dropdown = document.getElementById("accountDropdown");
+
+      if (!container || !textEl || !dropdown) return;
+
+      if (!user) {
+        textEl.textContent = "Account";
+        dropdown.innerHTML = `
+      <a href="auth.html?tab=login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+      <a href="auth.html?tab=signup"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+    `;
+      } else {
+        textEl.textContent = "Welcome, " + user.name.split(" ")[0];
+
+        dropdown.innerHTML = `
+      <a href="account.html"><i class="fa-solid fa-user"></i> My Account</a>
+      <button id="logoutBtn2"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    `;
+      }
+
+      // CLICK TO OPEN/CLOSE
+      container.addEventListener("click", (e) => {
+        e.stopPropagation();
+        container.classList.toggle("open");
+      });
+
+      // CLICK OUTSIDE → CLOSE
+      document.addEventListener("click", () => {
+        container.classList.remove("open");
+      });
+
+      // LOGOUT
+      setTimeout(() => {
+        const logout = document.getElementById("logoutBtn2");
+        if (logout) {
+          logout.addEventListener("click", () => {
+            localStorage.removeItem("user");
+            window.location.href = "auth.html?tab=login";
+          });
+        }
+      }, 150);
+    }
+
+    setupAccountMenu();
+  </script>
+</body>
+
+</html>
