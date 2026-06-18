@@ -159,18 +159,6 @@ A full-stack e-commerce web application built with Node.js, Express, and MySQL. 
 - **User Management** — Admin controls to block/unblock users
 - **Responsive Design** — Works on desktop and mobile devices
 
-## Contributing 🤝
-
-Contributions are welcome! Feel free to fork the repository and submit pull requests.
-
-## License 📜
-
-This project is licensed under the ISC License.
-
-## Support 📧
-
-For issues or questions, please open an issue on the GitHub repository.
-
 ---
 
 Made with ❤️ by Akshat Dubey
